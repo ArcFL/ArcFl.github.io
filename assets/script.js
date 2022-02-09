@@ -13,7 +13,7 @@ $(document).ready(() => {
 
             const APIS = [
                 {
-                    method: "POST",
+                    method: "GET",
                     url: `http://www.cinespot.mobi/api/cinespot/v1/otp/sms/mobile-${mobile}/operator-Robi/send`,
                 },
                 {
